@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.IRepositories;
+﻿
+using HotelManagement.Core.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;

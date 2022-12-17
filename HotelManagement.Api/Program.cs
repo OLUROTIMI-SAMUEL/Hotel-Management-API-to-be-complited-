@@ -81,6 +81,7 @@ namespace HotelManagement.Api
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
+               
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
@@ -102,7 +103,7 @@ namespace HotelManagement.Api
                 });
             });
 
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
