@@ -33,124 +33,90 @@ namespace HotelManagement.Api
             var config = builder.Configuration;
             var services = builder.Services;
 
-            // Add services to the container.
-            builder.Services.AddHttpClient();
-            //builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
+// Add services to the container.
+builder.Services.AddHttpClient();
+//builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
 
-            builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
-                .AddScoped<IUrlHelper>(x =>
-                    x.GetRequiredService<IUrlHelperFactory>()
-                        .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
+builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+    .AddScoped<IUrlHelper>(x =>
+        x.GetRequiredService<IUrlHelperFactory>()
+            .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
 
-            //For Entity Framework
+//For Entity Framework
 
-            builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
-            (builder.Configuration.GetConnectionString("ConnStr")));
+builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
+(builder.Configuration.GetConnectionString("ConnStr")));
 
-            //builder.Services.AddControllers();
-            // Configure Mailing Service
-            builder.Services.ConfigureMailService(config);
+//builder.Services.AddControllers();
+// Configure Mailing Service
+builder.Services.ConfigureMailService(config);
 
 
-            builder.Services.AddSingleton(Log.Logger);
+builder.Services.AddSingleton(Log.Logger);
 
-            // Adds our Authorization Policies to the Dependecy Injection Container
-            builder.Services.AddPolicyAuthorization();
+// Adds our Authorization Policies to the Dependecy Injection Container
+builder.Services.AddPolicyAuthorization();
 
-            // Configure Identity
-            builder.Services.ConfigureIdentity(); 
+// Configure Identity
+builder.Services.ConfigureIdentity();
 
-            builder.Services.AddAuthentication();
+builder.Services.AddAuthentication();
 
-            // Add Jwt Authentication and Authorization
-            services.ConfigureAuthentication(config);
+// Add Jwt Authentication and Authorization
+services.ConfigureAuthentication(config);
 
-            // Configure AutoMapper
-            services.ConfigureAutoMappers();
+// Configure AutoMapper
+services.ConfigureAutoMappers();
 
-            // Configure Cloudinary
+// Configure Cloudinary
 
-            //builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(Configuration));
+//builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(Configuration));
 
-            builder.Services.AddControllers().AddNewtonsoftJson(op => op.SerializerSettings.ReferenceLoopHandling
-            = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            builder.Services.AddControllers()
-                .AddNewtonsoftJson(op => op.SerializerSettings
-                    .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.AddControllers().AddNewtonsoftJson(op => op.SerializerSettings.ReferenceLoopHandling
+= Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(op => op.SerializerSettings
+        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            builder.Services.AddMvc().AddFluentValidation(fv =>
-            {
-                fv.DisableDataAnnotationsValidation = true;
-                fv.RegisterValidatorsFromAssemblyContaining<Program>();
-                fv.ImplicitlyValidateChildProperties = true;
-            });
+builder.Services.AddMvc().AddFluentValidation(fv =>
+{
+    fv.DisableDataAnnotationsValidation = true;
+    fv.RegisterValidatorsFromAssemblyContaining<Program>();
+    fv.ImplicitlyValidateChildProperties = true;
+});
 
-            builder.Services.AddSwagger();
+builder.Services.AddSwagger();
 
-            //Swagger Authorization setup
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelManagementAPI", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
-                      Enter 'Bearer' [space] and then your token in the text input below.
-                      \r\n\r\nExample: 'Bearer 12345abcdef'",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                      {
-                        {
-                          new OpenApiSecurityScheme
-                          {
-                            Reference = new OpenApiReference
-                              {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                              },
-                              Scheme = "oauth2",
-                              Name = "Bearer",
-                              In = ParameterLocation.Header,
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+});
 
-                            },
-                            new List<string>()
-                          }
-                        });
-            });
+// Register Dependency Injection Service Extension
+builder.Services.AddDependencyInjection();
 
-            builder.Services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+//For Entity Framework
 
-            // Register Dependency Injection Service Extension
-            builder.Services.AddDependencyInjection();
+var app = builder.Build();
 
-            //For Entity Framework
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-            var app = builder.Build();
+Seeder.SeedData(app).Wait();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+app.UseHttpsRedirection();
 
-            Seeder.SeedData(app).Wait();
+app.UseAuthentication();
+app.UseAuthorization();
 
-            app.UseHttpsRedirection();
+app.MapControllers();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-            app.Run(); 
+app.Run();
         }
     }
 }
