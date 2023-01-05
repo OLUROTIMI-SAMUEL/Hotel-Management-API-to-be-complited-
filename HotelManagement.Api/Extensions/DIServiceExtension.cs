@@ -6,10 +6,7 @@ using HotelManagement.Infrastructure.UnitOfWork;
 using HotelManagement.Services.Services;
 using HotelManagement.Core.Utilities;
 using HotelManagement.Services.Services;
-
-
-
-
+using Microsoft.AspNetCore.Authentication;
 
 namespace HotelManagement.Api.Extensions
 {
@@ -19,7 +16,7 @@ namespace HotelManagement.Api.Extensions
         {
             // Add Service Injections Here
 
-            services.AddScoped<IAuthService, AuthService>();
+            //services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<ILogger, Logger<TransactionService>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -33,7 +30,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            services.AddScoped<IAdminService, AdminService>();
+            //services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ITokenDetails, TokenDetails>();
 

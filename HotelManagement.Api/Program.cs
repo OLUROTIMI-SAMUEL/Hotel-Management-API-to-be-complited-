@@ -43,17 +43,15 @@ namespace HotelManagement.Api
             //builder.Services.AddScoped<IHotelServices, HotelRepository>();
 
 
-<<<<<<< HEAD
+
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
     .AddScoped<IUrlHelper>(x =>
         x.GetRequiredService<IUrlHelperFactory>()
             .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
-=======
             //Service Injection
 
 
             //For Entity Framework
->>>>>>> 162efac4da8fb4eec07a1413bbe690963497c555
 
 //For Entity Framework
 
@@ -113,16 +111,15 @@ builder.Services.AddMvc().AddFluentValidation(fv =>
     fv.ImplicitlyValidateChildProperties = true;
 });
 
-<<<<<<< HEAD
+
 builder.Services.AddSwagger();
-=======
+
             //Swagger Authorization setup
 
-            builder.Services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
->>>>>>> 162efac4da8fb4eec07a1413bbe690963497c555
+            //builder.Services.AddCors(c =>
+            //{
+            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            //});
 
 
 
