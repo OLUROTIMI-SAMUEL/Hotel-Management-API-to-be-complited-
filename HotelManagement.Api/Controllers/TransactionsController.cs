@@ -13,31 +13,21 @@ namespace HotelManagement.Api.Controllers
     public class TransactionsController : ControllerBase
     {
         private readonly ITransactionService _transactionService;
-        private readonly ILogger _logger;
 
-        public TransactionsController(ITransactionService transactionService, ILogger logger)
+        public TransactionsController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
-            _logger = logger;   
+           
          
         }
         [HttpGet, Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetAllTransactionForAdmin()
         {
-            var result = await _transactionService.DisplayAllTransactionToAdmin();
-            try
-            {
-               
-               
-                if (!result.Succeeded) return BadRequest($"unable to get transactions{result}");
+          var result = await _transactionService.DisplayAllTransactionToAdmin();
+           
+          if (!result.Succeeded) return BadRequest($"unable to get transactions{result}");
                 return Ok(result);
-            }
-            catch (Exception ex) 
-            { 
-                
-                _logger.LogError(ex, ex.Message);
-                return BadRequest(ex.Message);
-            }
+           
             
         }
 
