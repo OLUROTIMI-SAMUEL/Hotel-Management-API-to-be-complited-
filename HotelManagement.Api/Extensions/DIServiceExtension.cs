@@ -27,11 +27,11 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<ITransactionRepo, TransactionRepo >();
             
 
-            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            //services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             //services.AddScoped<IAdminService, AdminService>();
-            services.AddScoped<ITokenService, TokenService>();
+           // services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ITokenDetails, TokenDetails>();
 
 

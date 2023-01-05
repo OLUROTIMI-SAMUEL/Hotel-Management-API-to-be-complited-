@@ -1,4 +1,6 @@
-﻿using System;
+
+﻿using HotelManagement.Core.Domains;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +10,17 @@ namespace HotelManagement.Core.IRepositories
 { 
     public interface IUnitOfWork : IDisposable
     {
+   
+        ITransactionRepo Payment { get; }
+        IHotelRepository hotelRepository { get; }
+        IRoomRepository roomRepository { get; }
+        IAmenityRepository AmenityRepository { get; }
 
-     void SaveChanges();
+        void SaveChanges();
 
-     void BeginTransaction();
+        void BeginTransaction();
 
-     void Rollback();
+        void Rollback();
 
-            
     }
 }

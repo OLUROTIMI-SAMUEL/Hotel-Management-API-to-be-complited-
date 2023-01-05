@@ -315,3 +315,4 @@ C:\Users\hp\Desktop\HotelManagementSystemSQ012\HotelManagement.Api\bin\Debug\net
 C:\Users\hp\Desktop\HotelManagementSystemSQ012\HotelManagement.Api\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\hp\Desktop\HotelManagementSystemSQ012\HotelManagement.Api\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\hp\Desktop\HotelManagementSystemSQ012\HotelManagement.Api\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\hp\Desktop\HotelManagementSystemSQ012\HotelManagement.Api\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Abstractions.dll

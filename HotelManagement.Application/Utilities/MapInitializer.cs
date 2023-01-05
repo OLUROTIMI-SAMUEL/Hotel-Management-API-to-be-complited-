@@ -1,76 +1,86 @@
 ﻿
 using AutoMapper;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System.Linq;
 
 namespace HotelManagement.Application.Utilities
 {
-    public class MapInitializer : Profile
+    public class MapInitializer : Profile 
     {
+        public Mapper regMapper { get; set; }
         public MapInitializer ()
         {
             // Authentication Maps
-            
+           var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
+            regMapper = new Mapper(regConfig);
 
             // Amenity Maps
-           
+
+            CreateMap<Amenity, AmenityDTO>().ReverseMap();
+            CreateMap<Amenity, CreateAmenitiesDTO>().ReverseMap();
+            CreateMap<Amenity, UpdateAmenityDTO>().ReverseMap();
 
             // Booking Maps
-           
+
 
             // Hotel Maps
-           
+
+            CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
+           // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
+           CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
+
 
 
             // Room Maps
-           
 
+            CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
-            
-
-
-
 
 
             // Rating Maps
-            
+
 
             // Gallery Maps
-            
+
 
             //Customer
-           
+
 
 
             //TransactionResponse Mapper
 
             //Transaction Maps
-            
+            CreateMap<Payment, PaymentDTO>().ForMember(c => c.Booking, o => o.MapFrom(o => o.Booking.PaymentStatus));
+
 
 
             // aminity
-            
+
 
             // reviewdto
-          
+
 
             //Review Maps
-            
+
 
             // IWshList Maps
-           
+
             // Transaction Maps
-           
+
 
             //Manager Maps
-            
+
 
 
             //AppUser Maps
-           
+
 
             //Manager Request Map
 
-           
+
         }
     }
 }
