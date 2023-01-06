@@ -14,7 +14,11 @@ namespace HotelManagement.Core.Domains
         public string Avatar { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
         public string RefreshToken { get; set; } = DateTime.Now.ToString();
+
+       // --public string RefreshToken { get; set; } = String.Empty;
+
         public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }

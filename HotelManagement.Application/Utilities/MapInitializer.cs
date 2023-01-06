@@ -11,12 +11,20 @@ namespace HotelManagement.Application.Utilities
     public class MapInitializer : Profile 
     {
         public Mapper regMapper { get; set; }
+
         public MapInitializer ()
         {
             // Authentication Maps
            var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
             regMapper = new Mapper(regConfig);
 
+        //public MapInitializer()
+        //{
+        //    // Authentication Maps
+
+
+        //    var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
+        //    regMapper = new Mapper(regConfig);
             // Amenity Maps
 
             CreateMap<Amenity, AmenityDTO>().ReverseMap();
@@ -36,8 +44,19 @@ namespace HotelManagement.Application.Utilities
 
             // Room Maps
 
+
             CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
+
+
+
+            CreateMap<Room, GetRoomDto>().ReverseMap();
+            // RoomType Maps
+
+
+
+
+
 
 
             // Rating Maps
@@ -53,7 +72,9 @@ namespace HotelManagement.Application.Utilities
             //TransactionResponse Mapper
 
             //Transaction Maps
+
             CreateMap<Payment, PaymentDTO>().ForMember(c => c.Booking, o => o.MapFrom(o => o.Booking.PaymentStatus));
+
 
 
 

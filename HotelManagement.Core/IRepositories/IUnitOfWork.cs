@@ -6,21 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelManagement.Core.IRepositories
-{ 
+//--namespace HotelManagement.Core.IRepositories
+//{ 
+    //public interface IUnitOfWork : IDisposable
+    //{
+   
+        
+﻿namespace HotelManagement.Core.IRepositories
+{
     public interface IUnitOfWork : IDisposable
     {
-   
-        ITransactionRepo Payment { get; }
+
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
+        ITransactionRepo Payment { get; }
 
         void SaveChanges();
 
         void BeginTransaction();
 
         void Rollback();
+
 
     }
 }

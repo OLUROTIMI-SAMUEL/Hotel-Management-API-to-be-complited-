@@ -456,7 +456,10 @@ $RECYCLE.BIN/
 appsettings.json
 appsettings.[Dd]evelopment.json
 /HotelManagement.Api/appsettings.json
+<<<<<<< HEAD
 
 /HotelManagement.Api/HotelManagement.Api.csproj
 /HotelManagement.Api/HotelManagement.Api.csproj
 !HotelManagement.Api
+=======
+>>>>>>> 541ffe87a2ba49cc772a1c0c23201c8b3c5b9ae8
