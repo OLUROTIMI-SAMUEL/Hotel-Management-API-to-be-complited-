@@ -54,7 +54,7 @@ namespace HotelManagement.Api
             //Service Injection
 
 
-            //For Entity Framework
+            
 
           //For Entity Framework
 
@@ -62,14 +62,9 @@ namespace HotelManagement.Api
          (builder.Configuration.GetConnectionString("ConnStr")));
 
 
-          //builder.Services.AddControllers();
-         // Configure Mailing Service
-         //--builder.Services.ConfigureMailService(config);
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
-
-          // builder.Services.ConfigureMailService(config);
 
            builder.Services.ConfigureMailService(config);
 
@@ -85,9 +80,6 @@ namespace HotelManagement.Api
             // Configure Identity
             builder.Services.ConfigureIdentity();
 
-            // Configure Identity
-            //builder.Services.ConfigureIdentity();
-
 
           builder.Services.AddAuthentication();
 
@@ -95,12 +87,8 @@ namespace HotelManagement.Api
           services.ConfigureAuthentication(config);
 
          // Configure AutoMapper
-          services.ConfigureAutoMappers();
+          services.ConfigureAutoMappers(); 
 
-
-         //-- Configure Cloudinary
-
-         //--builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(Configuration));
             // Configure Cloudinary
             builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(config));
 
@@ -122,16 +110,7 @@ namespace HotelManagement.Api
          builder.Services.AddSwagger();
 
 
-            //Swagger Authorization setup
-
-            //--builder.Services.AddCors(c =>
-            //{
-            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            //});
-
-
-
-            builder.Services.AddCors(c =>
+         builder.Services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             });
@@ -148,23 +127,11 @@ namespace HotelManagement.Api
           //For Entity Framework
 
 
-            //--builder.Services.AddCors(c =>
-            //{
-            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            //});
+            
 
 
           var app = builder.Build();
-            //--Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
-
-            //Seeder.SeedData(app).Wait();
-             
-            //app.UseHttpsRedirection();
+           
 
 
            // Configure the HTTP request pipeline.
@@ -187,13 +154,7 @@ namespace HotelManagement.Api
 
           app.Run();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
-
-            //app.MapControllers();
-
-            //app.Run();
-           //-- app.Run();
+            
 
         }
     }

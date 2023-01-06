@@ -18,13 +18,7 @@ namespace HotelManagement.Application.Utilities
            var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
             regMapper = new Mapper(regConfig);
 
-        //public MapInitializer()
-        //{
-        //    // Authentication Maps
-
-
-        //    var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
-        //    regMapper = new Mapper(regConfig);
+       
             // Amenity Maps
 
             CreateMap<Amenity, AmenityDTO>().ReverseMap();
