@@ -15,7 +15,9 @@ using System.Threading.Tasks;
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
+
         ITransactionRepo Payment { get; }
+
 
         void SaveChanges();
 
