@@ -16,7 +16,7 @@ namespace HotelManagement.Api.Controllers
             _bookingService = bookingService;
         }
         [HttpPost]
-        public async Task<IActionResult> Book(BookingRequestDto bookingRequestDto)
+        public async Task<IActionResult> Book(BookingRequestDto bookingRequestDto) 
         {
             var result = await _bookingService.CreateHotelBooking(bookingRequestDto);
             if (!result.Succeeded) return BadRequest();

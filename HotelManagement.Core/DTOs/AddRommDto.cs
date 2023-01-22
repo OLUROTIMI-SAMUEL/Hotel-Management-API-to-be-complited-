@@ -12,6 +12,7 @@ namespace HotelManagement.Core.DTOs
         public string RoomTypeId { get; set; }
         public string RoomNo { get; set; }
         public DateTime CreatedAt { get; set; }
+        public int MyProperty { get; set; }
 
     }
 }
